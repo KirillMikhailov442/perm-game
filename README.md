@@ -1,4 +1,4 @@
-# Битва с племенем
+# ![](./assets/textures/icon.ico) Битва с племенем
 ![](./assets/textures/preview.jpg)
 
 ## Сюжет
