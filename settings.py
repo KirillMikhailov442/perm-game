@@ -62,7 +62,7 @@ ARROW_WIDTH=15
 ARROW_HEGHT=15
 ARROW_SPEED=15
 ARROW_IMAGE_PATH='./assets/textures/arrow.png'
-ARROW_SOUND_PATH='./assets/sounds/sound_player_pistorlet.mp3'
+ARROW_SOUND_PATH='./assets/sounds/sound_player_bow.mp3'
 
 
 BOMB_WIDTH=15

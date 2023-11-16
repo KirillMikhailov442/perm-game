@@ -13,7 +13,7 @@ arrow_image = pygame.image.load(ARROW_IMAGE_PATH)
 
 player_damage_image = pygame.image.load(PLAYER_DAMAGE_IMAGE_PATH)
 
-sound_player_pistolet = pygame.mixer.Sound(ARROW_SOUND_PATH)
+sound_player_bow = pygame.mixer.Sound(ARROW_SOUND_PATH)
 sound_player_taking_damage = pygame.mixer.Sound(PLAYER_SOUND_TAKING_DAMAGE_PATH)
 
 
@@ -52,7 +52,7 @@ class Player(pygame.sprite.Sprite):
     def fire(self, group: pygame.sprite.Group):
 
         arrow = Arrow(self.rect.centerx, self.rect.centery, arrow_image)
-        sound_player_pistolet.play()
+        sound_player_bow.play()
         group.add(arrow)
 
 

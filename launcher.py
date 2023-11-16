@@ -47,7 +47,7 @@ class Ui_MainWindow(object):
         self.preview.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.preview.setStyleSheet("color: rgb(85, 170, 0);")
         self.preview.setText("")
-        self.preview.setPixmap(QtGui.QPixmap("assets/textures/preview.png"))
+        self.preview.setPixmap(QtGui.QPixmap("assets/textures/preview.jpg"))
         self.preview.setScaledContents(True)
         self.preview.setAlignment(QtCore.Qt.AlignCenter)
         self.preview.setWordWrap(False)
@@ -95,8 +95,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Battle of the tribes launcher"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Битва племен"))
         self.button_start.setText(_translate("MainWindow", "Начать"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main), _translate("MainWindow", "Главная"))
-        self.label_info.setText(_translate("MainWindow", "Джордж О́руэлл — британский писатель, журналист и литературный критик, радиоведущий, автор мемуаров, публицист. Его работы отличаются простым стилем изложения, критикой тоталитаризма и поддержкой демократического социализма."))
+        self.label_info.setText(_translate("MainWindow", "Вы играете за Ермака Тимофеевича. Вы попали в окружение диких уральских племен. Ваша цель продержаться 3 минуты и победить вождя племени после чего вы победите."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_info), _translate("MainWindow", "Описание"))
