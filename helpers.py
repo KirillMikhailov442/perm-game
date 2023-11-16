@@ -1,4 +1,4 @@
-import random, pygame
+import random, pygame, sys
 from tkinter import messagebox
 
 from settings import WINDOW_WIDTH, WINDOW_HEIGHT, TUZEMEC_SPEED_MAX
@@ -48,4 +48,4 @@ def quit_game(show_message: bool = False, message_title: str = None, message_tex
         messagebox.showinfo(message_title, message_text)
 
     pygame.quit()
-
+    sys.exit()

@@ -10,7 +10,6 @@ from helpers import spawn_tuzemec, quit_game
 
 def start_game():
 
-
     messagebox.showinfo('Небольшое обучение', 'A - Влево \n W - Вверх \n S - Вниз \n D - Вправо \n ЛКМ - Стрелять \n ПКМ - Кидать гранату')
 
     pygame.init()
@@ -45,7 +44,7 @@ def start_game():
     game_time_text = font.render('Время: 0', True, 'BLACK')
     game_time_text.get_rect(topright=(WINDOW_WIDTH, 0))
 
-    indicator_boss_hp = font.render('Здоровье босса: 100', True, 'RED')
+    indicator_boss_hp = font.render('Здоровье вождя: 100', True, 'RED')
     indicator_boss_hp.get_rect(center=(WINDOW_WIDTH // 2, 0))
 
     # текстура заднего фона
@@ -90,12 +89,11 @@ def start_game():
     while True:
 
 
-        key = pygame.key.get_pressed()
-
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
                 quit_game(True, 'Выйти из игры', 'Вы решили выйти из игры, игра окончена')
+
 
 
             if event.type == pygame.MOUSEBUTTONUP:
@@ -247,7 +245,7 @@ def start_game():
             screen.blit(boss.image, boss.rect)
             boss.update(player_pos_x, player_pos_y)
 
-            indicator_boss_hp = font.render(f'Здоровье босса: {boss.hp}', True, 'RED')
+            indicator_boss_hp = font.render(f'Здоровье вождя: {int(boss.hp)}', True, 'RED')
             screen.blit(indicator_boss_hp, indicator_boss_hp.get_rect(topright=(WINDOW_WIDTH // 2, 0)))
 
 
@@ -270,12 +268,14 @@ def start_game():
 
                 if bomb.activated:
 
+
                     is_in_zone_x, is_in_zone_y = False, False
 
-                    if ((tuzemec.rect.centerx < bomb.rect.x + bomb.width) and (tuzemec.rect.centerx > bomb.rect.x)):
+
+                    if ((tuzemec.rect.x + tuzemec.width < bomb.rect.x + bomb.width) and (tuzemec.rect.x > bomb.rect.x)):
                         is_in_zone_x = True
 
-                    if ((tuzemec.rect.centery < bomb.rect.x + bomb.height) and (tuzemec.rect.centery > bomb.rect.y)):
+                    if ((tuzemec.rect.y + tuzemec.height < bomb.rect.x + bomb.height) and (tuzemec.rect.y > bomb.rect.y)):
                         is_in_zone_y = True
 
                     

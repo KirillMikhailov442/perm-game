@@ -1,6 +1,6 @@
 WINDOW_WIDTH=1000
 WINDOW_HEIGHT=800
-WINDOW_TITLE='Battle of the tribes'
+WINDOW_TITLE='Битва с племенем'
 WINDOW_ICON_PATH='./assets/textures/icon.ico'
 WINDOW_BACKGROUND_COLOR=(152, 251, 152)
 WINDOW_BACKGROUND_IMAGE_PATH='./assets/textures/pole.png'

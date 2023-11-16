@@ -95,8 +95,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Битва племен"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Битва с племенем"))
         self.button_start.setText(_translate("MainWindow", "Начать"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main), _translate("MainWindow", "Главная"))
-        self.label_info.setText(_translate("MainWindow", "Вы играете за Ермака Тимофеевича. Вы попали в окружение диких уральских племен. Ваша цель продержаться 3 минуты и победить вождя племени после чего вы победите."))
+        self.label_info.setText(_translate("MainWindow", "Вы играете за Ермака Тимофеевича. Вы и ваш отряд отправился колонизировать остальные земли Перми, но вы попали в окружение диких уральских племен. После яростной битвы с племенем вы оказались совершенно одни в окружении. Ваша цель продержаться 3 минуты и победить вождя племени после чего вы сможете вернуться к своему отряду."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_info), _translate("MainWindow", "Описание"))

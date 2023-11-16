@@ -71,8 +71,6 @@ class Player(pygame.sprite.Sprite):
     def moving(self) -> None:
 
         keys = pygame.key.get_pressed()
-
-
         if keys[pygame.K_a]:
             if self.rect.x > 0:
                 self.rect.x -= self.speed
