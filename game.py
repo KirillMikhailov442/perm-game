@@ -1,11 +1,11 @@
 import pygame, time
 from tkinter import messagebox
 
-from settings import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, FPS, WINDOW_BACKGROUND_COLOR, BACKGROUND_SOUND_PATH, BACKGROUND_SOUND_VICTORY_PATH, PLAYER_IMAGE_PATH, BOSS_IMAGE_PATH, MOUSE_IMAGE_PATH, MOUSE_WIDTH, MOUSE_HEIGHT, BOMB_IMAGE_PATH, ZONE_BOMB_WIDTH, ZONE_BOMB_HEIGHT, ZONE_BOMB_IMAGE_PATH, BOSS_SPAWN_TIME_SECONDS, BOSS_SOUND_PATH, WINDOW_FONT_PATH, WINDOW_ICON_PATH
+from settings import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, FPS, WINDOW_BACKGROUND_COLOR, BACKGROUND_SOUND_PATH, BACKGROUND_SOUND_VICTORY_PATH, PLAYER_IMAGE_PATH, BOSS_IMAGE_PATH, MOUSE_IMAGE_PATH, MOUSE_WIDTH, MOUSE_HEIGHT, BOMB_IMAGE_PATH, ZONE_BOMB_WIDTH, ZONE_BOMB_HEIGHT, ZONE_BOMB_IMAGE_PATH, BOSS_SPAWN_TIME_SECONDS, BOSS_SOUND_PATH, WINDOW_FONT_PATH, WINDOW_ICON_PATH, WINDOW_BACKGROUND_IMAGE_PATH
 from player import Player
 from bomb import Bomb
 from boss import Boss
-from helpers import spawn_zombie, quit_game
+from helpers import spawn_tuzemec, quit_game
 
 
 def start_game():
@@ -33,10 +33,10 @@ def start_game():
 
 
     # верхнее меню
-    indicator_bomb = pygame.transform.scale(pygame.image.load('./assets/textures/bombs/bomb-0.png'), (40, 30))
+    pygame.transform.scale(pygame.image.load('./assets/textures/bombs/bomb-0.png'), (40, 30))
     indicator_bomb_rect = pygame.Rect(50, 0, 40, 30)
 
-    indicator_hp = pygame.transform.scale(pygame.image.load('./assets/textures/hp/hp-5.png'), (30, 30))
+    pygame.transform.scale(pygame.image.load('./assets/textures/hp/hp-5.png'), (30, 30))
     indicator_hp_rect = pygame.Rect(10, 0, 30, 30)
 
     start_time = time.time()
@@ -48,13 +48,17 @@ def start_game():
     indicator_boss_hp = font.render('Здоровье босса: 100', True, 'RED')
     indicator_boss_hp.get_rect(center=(WINDOW_WIDTH // 2, 0))
 
+    # текстура заднего фона
+    background_image = pygame.transform.scale(pygame.image.load(WINDOW_BACKGROUND_IMAGE_PATH), (WINDOW_WIDTH, WINDOW_HEIGHT))
+    background_image.get_rect(topleft=(0, 0))
+
 
 
     player = Player(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, (WINDOW_WIDTH, WINDOW_HEIGHT), pygame.image.load(PLAYER_IMAGE_PATH))
     boss = Boss(WINDOW_WIDTH // 2, 10, pygame.image.load(BOSS_IMAGE_PATH))
 
 
-    zombies = pygame.sprite.Group()
+    tuzemecs = pygame.sprite.Group()
 
     TIMER_EVENT = pygame.USEREVENT + 1
 
@@ -64,8 +68,8 @@ def start_game():
 
     # группа лута
     loots = pygame.sprite.Group()
-    # группа пуль
-    ammos = pygame.sprite.Group()
+    # группа стрел
+    arrows = pygame.sprite.Group()
     # группа бомб
     bombs = pygame.sprite.Group()
 
@@ -113,7 +117,7 @@ def start_game():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 
                 if event.button == 1:
-                    player.fire(ammos)
+                    player.fire(arrows)
 
                 if event.button == 3:
 
@@ -123,7 +127,7 @@ def start_game():
 
             
             if event.type == TIMER_EVENT:
-                spawn_zombie(zombies)
+                spawn_tuzemec(tuzemecs)
 
 
 
@@ -153,7 +157,9 @@ def start_game():
 
 
 
-        screen.fill(WINDOW_BACKGROUND_COLOR)
+        # screen.fill(WINDOW_BACKGROUND_COLOR)
+
+        screen.blit(background_image, background_image.get_rect(topleft=(0, 0)))
 
 
 
@@ -179,40 +185,40 @@ def start_game():
         # отрисовать все объекты
         loots.draw(screen)
 
-        zombies.draw(screen)
-        zombies.update(player_pos_x, player_pos_y)
+        tuzemecs.draw(screen)
+        tuzemecs.update(player_pos_x, player_pos_y)
 
-        ammos.draw(screen)
-        ammos.update(mouse_pos_x, mouse_pos_y, (WINDOW_WIDTH, WINDOW_HEIGHT))
+        arrows.draw(screen)
+        arrows.update(mouse_pos_x, mouse_pos_y, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
         bombs.draw(screen)
         bombs.update(mouse_pos_x, mouse_pos_y)
 
 
-        # попадание пуль в зомби
-        for ammo in ammos:
+        # попадание пуль в туземцов
+        for arrow in arrows:
 
-            for zombie in zombies:
+            for tuzemec in tuzemecs:
 
-                if ammo.rect.colliderect(zombie.rect):
-                    zombie.taking_damage(player.damage, loots, True)
-                    ammo.kill()
+                if arrow.rect.colliderect(tuzemec.rect):
+                    tuzemec.taking_damage(player.damage, loots, True)
+                    arrow.kill()
 
         # попадание пуль в босса
         if mode_boss:
-            for ammo in ammos:
+            for arrow in arrows:
 
-                if ammo.rect.colliderect(boss.rect):
+                if arrow.rect.colliderect(boss.rect):
                     boss.taking_damage(player.damage)
-                    ammo.kill()
+                    arrow.kill()
 
 
-        # соприкосновение зомби с игроком
-        for zombie in zombies:
+        # соприкосновение туземцов с игроком
+        for tuzemec in tuzemecs:
 
-            if player.rect.colliderect(zombie.rect):
-                player.taking_damage(zombie.damage)
-                zombie.taking_damage(zombie.hp, loots, False)
+            if player.rect.colliderect(tuzemec.rect):
+                player.taking_damage(tuzemec.damage)
+                tuzemec.taking_damage(tuzemec.hp, loots, False)
 
 
         # сбор предметов
@@ -223,7 +229,7 @@ def start_game():
                 type_loot = loot.pickup()
 
                 if type_loot == 'MEGA_BOMB':
-                    zombies.empty()
+                    tuzemecs.empty()
 
                 else:
                     player.pickup_loot(type_loot)
@@ -257,24 +263,24 @@ def start_game():
                 quit_game(True, 'Победа', 'Ты подебил')
 
 
-        # взрыв бомб по зомби
+        # взрыв бомб по туземцам
         for bomb in bombs:
 
-            for zombie in zombies:
+            for tuzemec in tuzemecs:
 
                 if bomb.activated:
 
                     is_in_zone_x, is_in_zone_y = False, False
 
-                    if ((zombie.rect.centerx < bomb.rect.x + bomb.width) and (zombie.rect.centerx > bomb.rect.x)):
+                    if ((tuzemec.rect.centerx < bomb.rect.x + bomb.width) and (tuzemec.rect.centerx > bomb.rect.x)):
                         is_in_zone_x = True
 
-                    if ((zombie.rect.centery < bomb.rect.x + bomb.height) and (zombie.rect.centery > bomb.rect.y)):
+                    if ((tuzemec.rect.centery < bomb.rect.x + bomb.height) and (tuzemec.rect.centery > bomb.rect.y)):
                         is_in_zone_y = True
 
                     
                     if (is_in_zone_x and is_in_zone_y):
-                        zombie.taking_damage(zombie.hp, loots, True)
+                        tuzemec.taking_damage(tuzemec.hp, loots, True)
 
             if bomb.activated:
                 bomb.kill()

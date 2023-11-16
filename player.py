@@ -2,18 +2,18 @@ import pygame, math
 from typing import Tuple
 
 
-from ammo import Ammo
+from arrow import Arrow
 from helpers import quit_game
-from settings import PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_DAMAGE, PLAYER_SPEED, PLAYER_HP, PLAYER_DAMAGE_IMAGE_PATH, PLAYER_SOUND_TAKING_DAMAGE_PATH, AMMO_IMAGE_PATH, AMMO_SOUND_PATH, BOMB_COUNT_MAX
+from settings import PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_DAMAGE, PLAYER_SPEED, PLAYER_HP, PLAYER_DAMAGE_IMAGE_PATH, PLAYER_SOUND_TAKING_DAMAGE_PATH, ARROW_IMAGE_PATH, ARROW_SOUND_PATH, BOMB_COUNT_MAX
 
 
 pygame.mixer.init()
 
-ammo_image = pygame.image.load(AMMO_IMAGE_PATH)
+arrow_image = pygame.image.load(ARROW_IMAGE_PATH)
 
 player_damage_image = pygame.image.load(PLAYER_DAMAGE_IMAGE_PATH)
 
-sound_player_pistolet = pygame.mixer.Sound(AMMO_SOUND_PATH)
+sound_player_pistolet = pygame.mixer.Sound(ARROW_SOUND_PATH)
 sound_player_taking_damage = pygame.mixer.Sound(PLAYER_SOUND_TAKING_DAMAGE_PATH)
 
 
@@ -51,9 +51,9 @@ class Player(pygame.sprite.Sprite):
 
     def fire(self, group: pygame.sprite.Group):
 
-        ammo = Ammo(self.rect.centerx, self.rect.centery, ammo_image)
+        arrow = Arrow(self.rect.centerx, self.rect.centery, arrow_image)
         sound_player_pistolet.play()
-        group.add(ammo)
+        group.add(arrow)
 
 
 
@@ -94,10 +94,10 @@ class Player(pygame.sprite.Sprite):
 
 
 
-    def taking_damage(self, zombie_damage: int):
+    def taking_damage(self, tuzemec_damage: int):
 
         self.image = pygame.transform.rotate(pygame.transform.scale(player_damage_image, (self.width, self.height)), self.angle)
-        self.hp -= zombie_damage
+        self.hp -= tuzemec_damage
 
 
         sound_player_taking_damage.play()

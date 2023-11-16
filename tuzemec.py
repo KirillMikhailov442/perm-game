@@ -2,31 +2,31 @@ import pygame, math
 import random
 
 from loot import Loot
-from settings import ZOMBIE_DAMAGE, ZOMBIE_HP, ZOMBIE_DAMAGE_IMAGE_PATH, ZOMBIE_DAMAGE_SOUND_PATH, LIST_LOOTS, LOOT_SPAWN_CHANSE, ZOMBIE_WIDTH, ZOMBIE_HEIGHT
+from settings import TUZEMEC_DAMAGE, TUZEMEC_HP, TUZEMEC_DAMAGE_IMAGE_PATH, TUZEMEC_DAMAGE_SOUND_PATH, LIST_LOOTS, LOOT_SPAWN_CHANSE, TUZEMEC_WIDTH, TUZEMEC_HEIGHT
 
 pygame.mixer.init()
 
-zombie_damage_image = pygame.image.load(ZOMBIE_DAMAGE_IMAGE_PATH)
+tuzemec_damage_image = pygame.image.load(TUZEMEC_DAMAGE_IMAGE_PATH)
 
-sound_zombie_taking_damage = pygame.mixer.Sound(ZOMBIE_DAMAGE_SOUND_PATH)
+sound_tuzemec_taking_damage = pygame.mixer.Sound(TUZEMEC_DAMAGE_SOUND_PATH)
 
 
 
-class Zombie(pygame.sprite.Sprite):
+class Tuzemec(pygame.sprite.Sprite):
 
     def __init__(self, pos_x: int, pos_y: int, surface: pygame.Surface, speed: int) -> None:
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.transform.rotate(pygame.transform.scale(surface, (ZOMBIE_WIDTH, ZOMBIE_HEIGHT)), 0)
+        self.image = pygame.transform.rotate(pygame.transform.scale(surface, (TUZEMEC_WIDTH, TUZEMEC_HEIGHT)), 0)
         self.rect = self.image.get_rect(center=(pos_x, pos_y))
         self.angle = 0
 
-        self.width = ZOMBIE_WIDTH
-        self.height = ZOMBIE_HEIGHT
+        self.width = TUZEMEC_WIDTH
+        self.height = TUZEMEC_HEIGHT
         self.surface = surface
 
-        self.hp = ZOMBIE_HP
-        self.damage = ZOMBIE_DAMAGE
+        self.hp = TUZEMEC_HP
+        self.damage = TUZEMEC_DAMAGE
         self.speed = speed
 
 
@@ -62,19 +62,19 @@ class Zombie(pygame.sprite.Sprite):
 
     def taking_damage(self, player_damage: int, group: pygame.sprite.Group, is_spawn: bool) -> None:
 
-        self.image = pygame.transform.rotate(pygame.transform.scale(zombie_damage_image, (self.width, self.height)), self.angle)
+        self.image = pygame.transform.rotate(pygame.transform.scale(tuzemec_damage_image, (self.width, self.height)), self.angle)
         self.hp -= player_damage
 
 
         if self.hp <= 0:
             self.kill()
-            sound_zombie_taking_damage.play()
+            sound_tuzemec_taking_damage.play()
 
             if is_spawn: self.spawn_loot(self.rect.centerx, self.rect.centery, group)
 
 
 
-    def spawn_loot(self, zombie_pos_x: int, zombie_pos_y: int, group: pygame.sprite.Group) -> None:
+    def spawn_loot(self, tuzemec_pos_x: int, tuzemec_pos_y: int, group: pygame.sprite.Group) -> None:
 
         prob_spawn_loot = random.randint(1, LOOT_SPAWN_CHANSE)
 
@@ -82,5 +82,5 @@ class Zombie(pygame.sprite.Sprite):
 
             index_loot = random.randint(0, len(LIST_LOOTS) - 1)
 
-            loot = Loot(zombie_pos_x, zombie_pos_y, LIST_LOOTS[index_loot])
+            loot = Loot(tuzemec_pos_x, tuzemec_pos_y, LIST_LOOTS[index_loot])
             group.add(loot)

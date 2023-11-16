@@ -1,19 +1,19 @@
 import pygame, math
 from typing import Tuple
 
-from settings import AMMO_WIDTH, AMMO_HEGHT, AMMO_SPEED
+from settings import ARROW_WIDTH, ARROW_HEGHT, ARROW_SPEED
 
 
 
 
-class Ammo(pygame.sprite.Sprite):
+class Arrow(pygame.sprite.Sprite):
 
     def __init__(self, player_pos_x: int, player_pos_y: int, surface: pygame.Surface) -> None:
         pygame.sprite.Sprite.__init__(self)
 
 
-        self.width = AMMO_WIDTH
-        self.height = AMMO_HEGHT
+        self.width = ARROW_WIDTH
+        self.height = ARROW_HEGHT
         self.angle = 0
         self.direction_deter = False
         self.surface = surface
@@ -24,7 +24,7 @@ class Ammo(pygame.sprite.Sprite):
 
         self.image = pygame.transform.rotate(pygame.transform.scale(surface, (self.width, self.height)), 0)
         self.rect = self.image.get_rect(center=(player_pos_x, player_pos_y))
-        self.speed = AMMO_SPEED
+        self.speed = ARROW_SPEED
 
         self.rotate(50, 50)
 

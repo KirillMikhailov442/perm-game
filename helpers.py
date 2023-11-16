@@ -1,14 +1,14 @@
 import random, pygame
 from tkinter import messagebox
 
-from settings import WINDOW_WIDTH, WINDOW_HEIGHT, ZOMBIE_SPEED_MAX
+from settings import WINDOW_WIDTH, WINDOW_HEIGHT, TUZEMEC_SPEED_MAX
 
-from zombie import Zombie
+from tuzemec import Tuzemec
 
 list_pos = ['TOP', "LEFT", 'RIGHT', 'DOWN']
 
 
-def spawn_zombie(zombies):
+def spawn_tuzemec(tuzemecs):
 
     list_pos_index = random.randint(0, len(list_pos) - 1)
 
@@ -35,9 +35,9 @@ def spawn_zombie(zombies):
         height = WINDOW_HEIGHT
 
 
-    speed = random.randint(1, ZOMBIE_SPEED_MAX)
+    speed = random.randint(1, TUZEMEC_SPEED_MAX)
 
-    zombies.add(Zombie(width, height, pygame.image.load('./assets/textures/persons/zombie.png'), speed))
+    tuzemecs.add(Tuzemec(width, height, pygame.image.load('./assets/textures/persons/tuzemec.png'), speed))
 
 
 

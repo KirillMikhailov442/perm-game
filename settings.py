@@ -1,8 +1,9 @@
 WINDOW_WIDTH=1000
 WINDOW_HEIGHT=800
-WINDOW_TITLE='ZombiMen'
+WINDOW_TITLE='Battle of the tribes'
 WINDOW_ICON_PATH='./assets/textures/icon.ico'
 WINDOW_BACKGROUND_COLOR=(152, 251, 152)
+WINDOW_BACKGROUND_IMAGE_PATH='./assets/textures/pole.png'
 WINDOW_FONT_PATH='./assets/fonts/PixelifySans-VariableFont_wght.ttf'
 
 
@@ -27,14 +28,14 @@ LOOT_MEGA_BOMB_SOUND_PATH='./assets/sounds/sound_mega_bomb.mp3'
 LOOT_MORE_SOUND_PATH='./assets/sounds/sound_loot_more.mp3'
 
 
-ZOMBIE_WIDTH=50
-ZOMBIE_HEIGHT=50
-ZOMBIE_DAMAGE=1
-ZOMBIE_HP=3
-ZOMBIE_SPEED_MAX=6
-ZOMBIE_IMAGE_PATH='./assets/textures/persons/zombie.png'
-ZOMBIE_DAMAGE_IMAGE_PATH='./assets/textures/persons/zombie-damage.png'
-ZOMBIE_DAMAGE_SOUND_PATH='./assets/sounds/sound_zombie_taking_damage.mp3'
+TUZEMEC_WIDTH=50
+TUZEMEC_HEIGHT=50
+TUZEMEC_DAMAGE=1
+TUZEMEC_HP=3
+TUZEMEC_SPEED_MAX=6
+TUZEMEC_IMAGE_PATH='./assets/textures/persons/tuzemec.png'
+TUZEMEC_DAMAGE_IMAGE_PATH='./assets/textures/persons/tuzemec-damage.png'
+TUZEMEC_DAMAGE_SOUND_PATH='./assets/sounds/sound_tuzemec_taking_damage.mp3'
 
 
 PLAYER_WIDTH=50
@@ -49,7 +50,7 @@ PLAYER_SOUND_TAKING_DAMAGE_PATH='./assets/sounds/sound_player_taking_damage.mp3'
 
 BOSS_WIDTH=80
 BOSS_HEIGHT=80
-BOSS_HP=500
+BOSS_HP=1000
 BOSS_SPEED=1
 BOSS_SPAWN_TIME_SECONDS=180
 BOSS_IMAGE_PATH='./assets/textures/persons/boss.png'
@@ -57,11 +58,11 @@ BOSS_DAMAGE_IMAGE_PATH='./assets/textures/persons/boss-damage.png'
 BOSS_SOUND_PATH='assets/sounds/sound_boss.mp3'
 
 
-AMMO_WIDTH=15
-AMMO_HEGHT=15
-AMMO_SPEED=15
-AMMO_IMAGE_PATH='./assets/textures/ammo.png'
-AMMO_SOUND_PATH='./assets/sounds/sound_player_pistorlet.mp3'
+ARROW_WIDTH=15
+ARROW_HEGHT=15
+ARROW_SPEED=15
+ARROW_IMAGE_PATH='./assets/textures/arrow.png'
+ARROW_SOUND_PATH='./assets/sounds/sound_player_pistorlet.mp3'
 
 
 BOMB_WIDTH=15

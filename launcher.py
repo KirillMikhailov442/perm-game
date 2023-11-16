@@ -95,7 +95,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "ZombiMen launcher"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Battle of the tribes launcher"))
         self.button_start.setText(_translate("MainWindow", "Начать"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main), _translate("MainWindow", "Главная"))
         self.label_info.setText(_translate("MainWindow", "Джордж О́руэлл — британский писатель, журналист и литературный критик, радиоведущий, автор мемуаров, публицист. Его работы отличаются простым стилем изложения, критикой тоталитаризма и поддержкой демократического социализма."))
