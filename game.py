@@ -154,9 +154,6 @@ def start_game():
                         cursor_rect = pygame.Rect(mouse_pos_x - MOUSE_WIDTH // 2, mouse_pos_y - MOUSE_HEIGHT // 2, MOUSE_WIDTH, MOUSE_HEIGHT)
 
 
-
-        # screen.fill(WINDOW_BACKGROUND_COLOR)
-
         screen.blit(background_image, background_image.get_rect(topleft=(0, 0)))
 
 
@@ -258,7 +255,7 @@ def start_game():
             if boss.hp <= 0:
                 pygame.mixer.music.load(BACKGROUND_SOUND_VICTORY_PATH)
                 pygame.mixer.music.play(1)
-                quit_game(True, 'Победа', 'Ты подебил')
+                quit_game(True, 'Победа', 'Ты победил')
 
 
         # взрыв бомб по туземцам
