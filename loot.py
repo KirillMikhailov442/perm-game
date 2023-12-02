@@ -1,6 +1,5 @@
 import pygame
-
-from settings import LIST_LOOTS_IMAGES_PATH, LOOT_MEDICINE_SOUND_PATH, LOOT_SPEED_SOUND_PATH, LOOT_MEGA_BOMB_SOUND_PATH, LOOT_MORE_SOUND_PATH, LOOT_WIDTH, LOOT_HEIGHT
+from constants import LIST_LOOTS_IMAGES_PATH, LOOT_MEDICINE_SOUND_PATH, LOOT_SPEED_SOUND_PATH, LOOT_MEGA_BOMB_SOUND_PATH, LOOT_MORE_SOUND_PATH, LOOT_WIDTH, LOOT_HEIGHT
 
 list_loots_images = {
     "MEDICINE": pygame.image.load(LIST_LOOTS_IMAGES_PATH['MEDICINE']),
@@ -18,9 +17,7 @@ sound_mega_bomb = pygame.mixer.Sound(LOOT_MEGA_BOMB_SOUND_PATH)
 sound_loot_more = pygame.mixer.Sound(LOOT_MORE_SOUND_PATH)
 
 
-
 class Loot(pygame.sprite.Sprite):
-
     def __init__(self, pos_x: int, pos_y: int, type_loot: list_loots_images) -> None:
         pygame.sprite.Sprite.__init__(self)
 
@@ -30,7 +27,7 @@ class Loot(pygame.sprite.Sprite):
 
 
     def pickup(self) -> str:
-
+        """pick up loot"""
         self.play_music()
         self.kill()
 
@@ -38,18 +35,9 @@ class Loot(pygame.sprite.Sprite):
     
 
     def play_music(self) -> None:
-
-        if self.type_loot == 'MEDICINE':
-            sound_up_hp.play()
-
-        elif self.type_loot == 'DAMAGE':
-            sound_loot_more.play()
-        
-        elif self.type_loot == 'SPEED':
-            sound_up_speed.play()
-
-        elif self.type_loot == 'BOMB':
-            sound_loot_more.play()
-
-        elif self.type_loot == 'MEGA_BOMB':
-            sound_mega_bomb.play()
+        """turn on sounds"""
+        if self.type_loot == 'MEDICINE': sound_up_hp.play()
+        elif self.type_loot == 'DAMAGE': sound_loot_more.play()
+        elif self.type_loot == 'SPEED': sound_up_speed.play()
+        elif self.type_loot == 'BOMB': sound_loot_more.play()
+        elif self.type_loot == 'MEGA_BOMB': sound_mega_bomb.play()

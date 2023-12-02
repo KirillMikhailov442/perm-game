@@ -1,7 +1,5 @@
 import pygame, math
-
-from settings import BOSS_WIDTH, BOSS_HEIGHT, BOSS_SPEED, BOSS_DAMAGE_IMAGE_PATH, BOSS_HP
-
+from constants import BOSS_WIDTH, BOSS_HEIGHT, BOSS_SPEED, BOSS_DAMAGE_IMAGE_PATH, BOSS_HP
 
 boss_image_damage = pygame.image.load(BOSS_DAMAGE_IMAGE_PATH)
 
@@ -9,7 +7,6 @@ boss_image_damage = pygame.image.load(BOSS_DAMAGE_IMAGE_PATH)
 class Boss(pygame.sprite.Sprite):
 
     def __init__(self, pos_x: int, pos_y: int, surface: pygame.Surface) -> None:
-
         pygame.sprite.Sprite.__init__(self)
 
         self.width = BOSS_WIDTH
@@ -26,10 +23,7 @@ class Boss(pygame.sprite.Sprite):
         self.hp = BOSS_HP
 
 
-
     def update(self, player_pos_x: int, player_pos_y: int) -> None:
-
-
         dx = player_pos_x - self.rect.centerx
         dy = player_pos_y - self.rect.centery
 
@@ -40,29 +34,21 @@ class Boss(pygame.sprite.Sprite):
 
         self.rect.x += dx
         self.rect.y += dy
-
-
         self.rotate(player_pos_x, player_pos_y)
 
 
-
     def rotate(self, player_pos_x: int, player_pos_y: int) -> None:
-
+        """boss rotation"""
         dx = player_pos_x - self.rect.centerx
         dy = player_pos_y - self.rect.centery
-
         self.angle = math.atan2(-dy, dx) * 180 / math.pi
 
         self.image = pygame.transform.rotate(pygame.transform.scale(self.surface, (self.width, self.height)), self.angle)
 
 
-
     def taking_damage(self, player_damage: int) -> None:
-
+        """boss taking damage"""
         self.image = pygame.transform.rotate(pygame.transform.scale(boss_image_damage, (self.width, self.height)), self.angle)
         self.hp -= player_damage
 
-
-        if self.hp <= 0:
-            self.kill()
-            
+        if self.hp <= 0: self.kill()

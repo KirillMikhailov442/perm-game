@@ -36,6 +36,7 @@ TUZEMEC_SPEED_MAX=6
 TUZEMEC_IMAGE_PATH='./assets/textures/persons/tuzemec.png'
 TUZEMEC_DAMAGE_IMAGE_PATH='./assets/textures/persons/tuzemec-damage.png'
 TUZEMEC_DAMAGE_SOUND_PATH='./assets/sounds/sound_tuzemec_taking_damage.mp3'
+LIST_POS_SPAWN_TUZEMEC=['TOP', "LEFT", 'RIGHT', 'DOWN']
 
 
 PLAYER_WIDTH=50
@@ -79,6 +80,5 @@ BOMB_SOUND_PATH='./assets/sounds/sound_mega_bomb.mp3'
 MOUSE_WIDTH=20
 MOUSE_HEIGHT=20
 MOUSE_IMAGE_PATH='./assets/textures/cursor.png'
-
 
 FPS=60
