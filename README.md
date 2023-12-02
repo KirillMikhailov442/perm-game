@@ -31,3 +31,4 @@ pip install -r requirements.txt
 
 python main.py
 ```
+Если вам лень вводить команды в терминал, то можете скачать [exe файл](https://drive.google.com/file/d/1MMWHyWQexUEpXV1UXT9YK3LP8ATVzLao/view?usp=drive_link)
